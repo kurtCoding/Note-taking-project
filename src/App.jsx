@@ -1,10 +1,14 @@
 import "./App.css";
+import AboutUs from "./components/AboutUs";
 
 function App() {
 
   return (
     <>
-    <h1>Hello World</h1>
+
+    <main>
+      <AboutUs/>
+    </main>
     </>
   )
 }
