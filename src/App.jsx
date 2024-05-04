@@ -1,28 +1,15 @@
-<<<<<<< HEAD
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-
+import Footer from "./components/Footer";
+import SideBar from "./components/SideBar";
 function App() {
-	const [count, setCount] = useState(0);
-
-	return (
-		<>
-			<h1>Hello World</h1>
-		</>
-	);
-=======
-import './App.css'
-
-function App() {
-
   return (
-    <>
-    <h1>Hello World</h1>
-    </>
-  )
->>>>>>> ef9290cef84801f1e88c35576f6a47a8f24d3c7f
+    <div>
+      <SideBar />
+      <div className="grid p-4 sm:ml-64">
+        <div>Add new Note</div>
+      </div>
+    </div>
+  );
 }
 
 export default App;
