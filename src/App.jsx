@@ -34,8 +34,8 @@ function App() {
         <SideBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Notes" element={<NoteList />} />
-          <Route path="/Notes/new" element={<NewNote />} />
+          <Route path="/Notes" elemeNt={<NoteList />} />
+          <Route path="/Notes/new" element={<NewNote  />} />
           <Route path="/Notes/:id" element={<NoteDetails/>} />
           <Route path="/Note/:id/edit" element={<EditNote />} />
         </Routes>
