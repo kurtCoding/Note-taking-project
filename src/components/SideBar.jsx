@@ -4,11 +4,17 @@ import { Link} from "react-router-dom";
 export default function SideBar() {
   const [newTitle, setNewTitle] = useState("");
   const [noteBookTitles, setNoteBookTitle] = useState([
-    { title: "Work", to: "Notes/work" },
-    { title: "School", to: "Notes/school"},
-    { title: "Development", to: "Notes/development" },
-    { title: "All Notes", to:"/Notes" },
+    { title: "Work", to: "Notes/work", isActive:false},
+    { title: "School", to: "Notes/school", isActive:false},
+    { title: "Development", to: "Notes/development", isActive:false },
+    { title: "All Notes", to:"/Notes", isActive:false },
   ]);
+
+  const [isActive, setIsActive] = useState(-1);
+
+  function handleCategoryBG(idx) {
+    setIsActive(idx)
+  }
 
   function handleNewNotebookTitle(e) {
     e.preventDefault();
@@ -52,7 +58,7 @@ export default function SideBar() {
               required
             />
 
-            <button className=" bg-whitetext-sm absolute bottom-0 end-0 top-0 w-1/4 rounded-lg border border-gray-300  font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700">
+            <button className=" bg-whitetext-sm absolute bottom-0 end-0 top-0 w-1/4 rounded-lg border border-gray-300  font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 active:bg-red-400">
               <i className="fa-solid fa-plus p-2"></i>
             </button>
           </div>
@@ -65,7 +71,10 @@ export default function SideBar() {
                 <li key={idx}>
                   <Link
                     to={ele.to}
-                    className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 cursor-pointer"
+                    className={`group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 cursor-pointer ${
+                      isActive === idx ? "bg-[#EFABFC] dark:text-black" : ""
+                    }`}
+                    onClick={() =>handleCategoryBG(idx)}
                   >
                     {ele.title}
                   </Link>
