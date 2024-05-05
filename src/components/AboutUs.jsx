@@ -16,8 +16,8 @@ export default function AboutUs() {
               <h2 className="text-xl font-semibold mb-2">{data.name}</h2>
             </div>
             <p className="text-gray-700 mb-2"><b>Title</b>: {data.title}</p>
-            <p className="text-gray-700 mb-2"><b>Skills</b>: {data.skills}</p>
-            <p className="text-gray-700"><b> Bio</b>: {data.bio}</p>
+            <p className="text-gray-700 mb-2"><b>Skills</b>: Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, minima nesciunt fuga harum repudiandae repellendus magni earum accusamus eum veniam iusto quos aliquam mollitia cupiditate ab delectus fugiat quaerat expedita!</p>
+            <p className="text-gray-700"><b> Bio</b>: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque totam cumque vero necessitatibus possimus distinctio eaque deleniti tenetur placeat aspernatur beatae at corrupti blanditiis soluta aliquid, expedita, similique dolorum facere.</p>
             
           </div>
         ))}
