@@ -1,4 +1,5 @@
 import {} from 'react'
+import {addNewNote} from "../services/notesApi"
 
 export default function NewNoteForm() {
 
