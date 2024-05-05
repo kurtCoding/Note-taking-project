@@ -1,15 +1,24 @@
 export default function Note({ note }) {
-  return (
-    <div className="mb-3 ml-auto mr-auto w-3/4 rounded bg-secondary px-4 py-4 text-start">
-      <div className="">
-        <h2 className="flex font-bold">
-          {note.title}
-          <span className="ml-auto text-xs font-normal text-accent">
-            {note.category}
-          </span>
-        </h2>
+  let dot;
+  if (note.category === "school") {
+    dot = 'bg-green-400'
+  }
+  if (note.category === "work") {
+    dot = 'bg-purple-400'
+  }
+  if (note.category === "development") {
+    dot = 'bg-[#FEA639]'
+  }
+
+  return(
+  <div className="mb-3 ml-auto mr-auto w-3/4 rounded px-1 py-6 text-start border-b">
+      <div className="flex items-center">
+        <span className={`inline-block rounded-full w-3 h-3 ${dot}`}></span>
+          <h2 className="ml-2 font-bold text-font">{note.title}</h2>
+        <span className="ml-auto text-xs font-normal text-accent">{note.category.toUpperCase()}</span>
       </div>
-      <h3>{note.body}</h3>
-    </div>
+      <br />
+      <h3 className="text-font ml-4">{note.body}</h3>
+  </div>
   );
 }

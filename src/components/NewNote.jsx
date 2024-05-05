@@ -1,6 +1,6 @@
 import {} from 'react'
 
-export default function NewNoteForm() {
+export default function NewNote() {
   return (
     <div>NewNoteForm</div>
   )
