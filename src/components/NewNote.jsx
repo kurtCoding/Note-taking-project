@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { addNewNote } from "../services/notesApi.js"
 
-export default function NewNoteForm() {
+export default function NewNote() {
 
   const [newNote, setNewNote] = useState({});
 
@@ -20,6 +20,9 @@ export default function NewNoteForm() {
   }
 
   return (
+    <section className="over fixed right-0 h-screen w-[85%] overflow-y-auto scroll-smooth bg-primary">
+      <h1 className="text-font text-center">New Note Form</h1>
+  
     <div>
       <h1>New Note</h1>
       <br/>
@@ -41,5 +44,6 @@ export default function NewNoteForm() {
         <input type="submit" value="Add Note" className="submitButton" />
       </form>
     </div>
+    </section>
   )
 }
