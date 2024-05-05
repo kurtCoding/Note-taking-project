@@ -5,7 +5,6 @@ import SideBar from "./components/SideBar";
 import { useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { getNotesList } from "./services/notesApi.js";
-import Note from "./components/Note.jsx";
 import Home from "./components/Home.jsx";
 import NewNote from "./components/NewNote.jsx";
 import NoteDetails from "./components/NoteDetails.jsx";
