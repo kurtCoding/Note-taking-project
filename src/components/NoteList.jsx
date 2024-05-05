@@ -24,7 +24,7 @@ export default function NoteList() {
       {loadingError ? (
         <ErrorMessage />
       ) : (
-        <section className="over fixed right-0 h-screen w-[85%] overflow-y-auto scroll-smooth bg-primary">
+        <section className="fixed right-0 h-screen w-[85%] overflow-y-auto scroll-smooth bg-primary">
           <h1 className="mb-2 text-center text-4xl text-font mt-6">All Notes</h1>
           {allNotes.map((note) => {
             return <Note note={note} key={note.id} />;
