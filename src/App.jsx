@@ -1,9 +1,7 @@
 import "./App.css";
-// import AboutUs from "./components/AboutUs";
 import NoteList from "./components/NoteList";
 import SideBar from "./components/SideBar";
-import AboutUs from "./components/AboutUs";
-import Notes from "./components/Notes";
+// import AboutUs from "./components/AboutUs";
 import { getNotesList, addNewNote } from "./services/notesApi.js";
 import { useEffect, useState } from "react";
 
@@ -11,13 +9,14 @@ import { useEffect, useState } from "react";
 function App() {
   const [notes, setNotes] = useState([]);
 
+  console.log(notes)
   function getNotes() {
     getNotesList()
       .then((data) => {
         setNotes([...data]);
       })
       .catch((error) => {
-        //handle error
+        console.log(error)
       });
   }
 

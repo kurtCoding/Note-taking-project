@@ -3,7 +3,7 @@ import ErrorMessage from "../Errors/ErrorMessage";
 import { getAllNotes } from "../api/fetch";
 import Note from "./Note";
 
-export default function Notes() {
+export default function NoteList() {
   const [allNotes, setAllNotes] = useState([]);
   const [loadingError, setLoadingError] = useState(false);
 
