@@ -1,12 +1,13 @@
 import { useState } from "react";
+import { Link} from "react-router-dom";
 
 export default function SideBar() {
   const [newTitle, setNewTitle] = useState("");
   const [noteBookTitles, setNoteBookTitle] = useState([
-    { title: "Work" },
-    { title: "Product" },
-    { title: "Development" },
-    { title: "All Notes" },
+    { title: "Work", to: "Notes/work" },
+    { title: "School", to: "Notes/school"},
+    { title: "Development", to: "Notes/development" },
+    { title: "All Notes", to:"/Notes" },
   ]);
 
   function handleNewNotebookTitle(e) {
@@ -22,13 +23,15 @@ export default function SideBar() {
       aria-label="Sidebar"
     >
       <div className="h-full overflow-y-auto bg-nav px-3 py-4 dark:bg-nav ">
-        <div className="mb-5 ms-3 text-white">LOGO</div>
+        <div className="mb-5 ms-3  text-fuchsia-300 text-xl">Eureka ⚡</div>
 
         <button
           type="button"
           className=" mb-5 me-2 w-full rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 "
         >
+          <Link to="/Notes/new">
           + Add Note
+          </Link>
         </button>
         <div className="flex justify-between p-2 align-baseline text-white">
           <p>Note Books</p>
@@ -58,12 +61,12 @@ export default function SideBar() {
             <ul id="dropdown-example" className=" space-y-2 py-2">
               {noteBookTitles.map((ele, idx) => (
                 <li key={idx}>
-                  <a
-                    href="#"
-                    className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                  <Link
+                    to={ele.to}
+                    className="group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 cursor-pointer"
                   >
                     {ele.title}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
