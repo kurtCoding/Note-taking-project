@@ -23,7 +23,9 @@ export default function SideBar() {
       aria-label="Sidebar"
     >
       <div className="h-full overflow-y-auto bg-nav px-3 py-4 dark:bg-nav ">
-        <div className="mb-5 ms-3  text-fuchsia-300 text-xl">Eureka ⚡</div>
+        <Link to="/" >
+          <div className="mb-5 ms-3  text-fuchsia-300 text-xl">Eureka ⚡</div>
+        </Link>
 
         <Link to="/Notes/new">
         <button
