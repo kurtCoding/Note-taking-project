@@ -1,20 +1,38 @@
 import "./App.css";
-import Footer from "./components/Footer";
+import NoteList from "./components/NoteList";
 import SideBar from "./components/SideBar";
-import AboutUs from "./components/AboutUs";
-import Notes from "./components/Notes";
+// import AboutUs from "./components/AboutUs";
+import { getNotesList, addNewNote } from "./services/notesApi.js";
+import { useEffect, useState } from "react";
+
 
 function App() {
+  const [notes, setNotes] = useState([]);
+
+  console.log(notes)
+  function getNotes() {
+    getNotesList()
+      .then((data) => {
+        setNotes([...data]);
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  }
+
+  useEffect(() => {
+    getNotes();
+  }, []);
+  
   return (
-   <div className="container">
-    <div className="sidebar">
-      <SideBar />
-      <div className="grid p-4 sm:ml-64">Add new Note</div>
+    <div className="container">
+      <div className="sidebar">
+        <SideBar />
+      </div>
+      <NoteList />
+      {/* <AboutUs /> */}
     </div>
-    <Notes />
-    <AboutUs />
-   </div>
-  )
+  );
 }
 
 export default App;
