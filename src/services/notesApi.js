@@ -34,3 +34,38 @@ export function addNewNote(note) {
       .catch((error) => reject(error));
   });
 }
+
+export function deleteNote(id) {
+  return new Promise((resolve, reject) => {
+    const docRef = doc(db, "notes", id);
+    deleteDoc(docRef)
+      .then(() => {
+        resolve("Note deleted successfully");
+        return;
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+}
+
+export function updateNote(note) {
+  const docRef = doc(db, "notes", note.id);
+  return new Promise((resolve, reject) => {
+    getDoc(docRef)
+      .then((docSnapshot) => {
+        if (docSnapshot.exists()) {
+          delete note.id;
+          resolve(
+            updateDoc(docRef, note).then(() => ({
+              id: docSnapshot.id,
+              ...docSnapshot.data(),
+            })),
+          );
+        } else {
+          reject(new Error("Profile not found."));
+        }
+      })
+      .catch((error) => reject(error));
+  });
+}

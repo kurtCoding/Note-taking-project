@@ -3,7 +3,11 @@ import { addNewNote } from "../services/notesApi.js"
 
 export default function NewNote() {
 
-  const [newNote, setNewNote] = useState({});
+  const [newNote, setNewNote] = useState({
+    title: "",
+    body: "",
+    category: ""
+  });
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -32,7 +36,7 @@ export default function NewNote() {
         <br />
         <label htmlFor="noteArea">Scribe Here..</label>
         <br />
-        <textarea onSubmit={handleTextChange} value={} id='noteArea' className='noteArea' rows="20" cols="70">Eureka!!! I shouted, as I raced to my notepad to jot down my thoughts...</textarea>
+        <textarea onSubmit={handleTextChange} value={newNote.body} id='noteArea' className='noteArea' rows="20" cols="70">Eureka!!! I shouted, as I raced to my notepad to jot down my thoughts...</textarea>
         <br />
         <label htmlFor="categories">NoteBank</label>
         <select name="categories" id="categories">Remember Me?
