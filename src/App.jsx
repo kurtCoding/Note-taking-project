@@ -3,12 +3,24 @@ import Footer from "./components/Footer";
 import SideBar from "./components/SideBar";
 import AboutUs from "./components/AboutUs";
 import Notes from "./components/Notes";
-import { getNotesList } from "./services/notesApi.js";
-import { useEffect } from "react";
+import { getNotesList, addNewNote } from "./services/notesApi.js";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [notes, setNotes] = useState([]);
+
+  function getNotes() {
+    getNotesList()
+      .then((data) => {
+        setNotes([...data]);
+      })
+      .catch((error) => {
+        //handle error
+      });
+  }
+
   useEffect(() => {
-    getNotesList();
+    getNotes();
   }, []);
   return (
     <div className="container">
@@ -16,6 +28,7 @@ function App() {
         <SideBar />
         <div className="grid p-4 sm:ml-64">Add new Note</div>
       </div>
+
       <Notes />
       <AboutUs />
     </div>
