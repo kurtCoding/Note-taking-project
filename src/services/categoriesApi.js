@@ -9,9 +9,10 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-const colRef = collection(db, "notes");
+const colRef = collection(db, "categories");
 
-export function getNotesList() {
+export function getCategories() {
+  console.log('working')
   return new Promise((resolve, reject) => {
     getDocs(colRef)
       .then((snapShot) => {
@@ -19,6 +20,7 @@ export function getNotesList() {
           id: doc.id,
           ...doc.data(),
         }));
+        console.log(data,'la data')
         resolve(data);
       })
       .catch((error) => {
@@ -27,27 +29,7 @@ export function getNotesList() {
   });
 }
 
-export function getNoteById(id) {
-  return new Promise((resolve, reject) => {
-    const docRef = doc(db, "notes", id);
-    getDoc(docRef).then((docSnapshot) => {
-    if (docSnapshot.exists()) {
-      resolve({ id: docSnapshot.id, ...docSnapshot.data() })
-    } else {
-    reject( new Error("Profile not found."));
-    }
-    }).catch((error) => {
-     reject(error)
-   })
-  })
- 
-
-
-}
-
-
-
-export function addNewNote(note) {
+export function addNewCategory(note) {
   return new Promise((resolve, reject) => {
     addDoc(colRef, note)
       .then((response) => resolve(response))
@@ -55,12 +37,12 @@ export function addNewNote(note) {
   });
 }
 
-export function deleteNote(id) {
+export function deleteCategory(id) {
   return new Promise((resolve, reject) => {
-    const docRef = doc(db, "notes", id);
+    const docRef = doc(db, "categories", id);
     deleteDoc(docRef)
       .then(() => {
-        resolve("Note deleted successfully");
+        resolve("Category deleted successfully");
         return;
       })
       .catch((error) => {
@@ -69,8 +51,8 @@ export function deleteNote(id) {
   });
 }
 
-export function updateNote(note) {
-  const docRef = doc(db, "notes", note.id);
+export function updateCategory(note) {
+  const docRef = doc(db, "categories", note.id);
   return new Promise((resolve, reject) => {
     getDoc(docRef)
       .then((docSnapshot) => {
@@ -83,7 +65,7 @@ export function updateNote(note) {
             })),
           );
         } else {
-          reject(new Error("Profile not found."));
+          reject(new Error("Category not found."));
         }
       })
       .catch((error) => reject(error));
