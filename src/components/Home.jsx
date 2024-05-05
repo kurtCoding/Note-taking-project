@@ -1,9 +1,7 @@
-import {} from 'react'
-
-export default function NewNote() {
+export default function Home() {
   return (
     <section className="over fixed right-0 h-screen w-[85%] overflow-y-auto scroll-smooth bg-primary">
-      <h1 className="text-font text-center">New Note Form</h1>
+      <h1 className="text-font text-center">Hello World</h1>
     </section>
   )
 }
