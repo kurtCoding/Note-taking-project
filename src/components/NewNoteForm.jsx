@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { addNewNote } from "../services/notesApi.js"
 
-export default function NewNote() {
+export default function NewNoteForm() {
 
   const [newNote, setNewNote] = useState({});
 
