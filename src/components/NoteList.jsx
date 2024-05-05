@@ -24,8 +24,8 @@ export default function Notes() {
       {loadingError ? (
         <ErrorMessage />
       ) : (
-        <section className="bg-primary">
-          <h1 className="mb-2 text-center text-2xl">All Notes</h1>
+        <section className="bg-primary fixed right-0 w-[85%] h-screen overflow-y-auto over scroll-smooth">
+          <h1 className="mb-2 text-center text-2xl text-font">All Notes</h1>
           {allNotes.map((note) => {
             return <Note note={note} key={note.id} />;
           })}
