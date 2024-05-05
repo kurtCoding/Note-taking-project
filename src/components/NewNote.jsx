@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { addNewNote } from "../services/notesApi.js";
 
+const categories = [
+  {name: "Work", id: "1"}, 
+  {name: "School", id: "1"}, 
+  {name: "Development", id: "1"}, 
+]
 export default function NewNote() {
   const [newNote, setNewNote] = useState({
     title: "",
@@ -9,8 +14,15 @@ export default function NewNote() {
   });
 
   function handleSubmit(event) {
-    event.preventDefault();
-    addNewNote(newNote).then((res) => {});
+    event.preventDefault()
+    addNewNote(newNote).then((res) => {
+      
+    }) 
+    setNewNote({
+    title: "",
+    body: "",
+    category: ""
+  })
   }
 
   function handleTextChange(event) {
@@ -19,6 +31,10 @@ export default function NewNote() {
       [event.target.id]: event.target.value,
     });
   }
+
+  // function resetForm() {
+  //   setNewNote([...newNote])
+  // }
 
   return (
     <section className="overflow-y-auto scroll-smooth bg-primary">
@@ -31,17 +47,20 @@ export default function NewNote() {
           Title
         </label>
         <input
+          onChange={handleTextChange}
           type="text"
           id="title"
           name="title"
+          value={newNote.title}
+          require
           className="border border-[#878585] bg-transparent text-font mb-4 text-2xl"
         />
 
         <label htmlFor="noteArea" className="text-xl text-white">Scribe Here..</label>
         <textarea
-          onSubmit={handleTextChange}
+          onChange={handleTextChange}
           value={newNote.body}
-          id="noteArea"
+          id="body"
           className="border border-[#878585] bg-transparent text-font mb-4 text-base"
           rows="20"
           cols="70"
@@ -51,12 +70,8 @@ export default function NewNote() {
         </textarea>
         <br />
         <label htmlFor="categories" className="text-xl text-white">NoteBank</label>
-        <select name="categories" id="categories" className="border border-[#878585] bg-transparent text-font mb-4">
-          Remember Me?
-          <option value="workNotes">Work Notes</option>
-          <option value="people?">People?</option>
-          <option value="random">Random</option>
-          <option value="allNotes">All Notes</option>
+        <select name="categories" id="categories" className="border border-[#878585] bg-transparent text-font mb-4" onChange={handleTextChange} value={newNote.category}>
+          {categories.map((ele) => <option value={ele.name}>{ele.name}</option> )}
         </select>
         <input type="submit" value="Add Note" className="w-20 text-center border border-[#878585] bg-transparent text-font mb-4" />
       </form>
