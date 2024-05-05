@@ -1,5 +1,3 @@
-import {} from 'react'
-
 export default function NewNote() {
   return (
     <section className="over fixed right-0 h-screen w-[85%] overflow-y-auto scroll-smooth bg-primary">
