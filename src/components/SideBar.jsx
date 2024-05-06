@@ -7,7 +7,7 @@ import {
   updateCategory,
 } from "../services/categoriesApi";
 
-export default function SideBar({allNotes, setNote, categories, setCategories}) {
+export default function SideBar({allNotes, setNotes, categories, setCategories}) {
   const [noteBookName, setNoteBookName] = useState("");
   const [isEdit, setIsEdit] = useState(false);
   const [currentNoteBookId, setCurrentNoteBookId] = useState();
@@ -31,7 +31,7 @@ export default function SideBar({allNotes, setNote, categories, setCategories}) 
   //Gerardo -> Function to filter all Notes by Input Value
   function filterNotes(search, notes){
     return notes.filter((note) => {
-      return note.title.toLowerCase().match(search.toLowerCase());
+      return note.title.toLowerCase().match(search.toLowerCase()) || note.body.toLowerCase().match(search.toLowerCase());
     });
   }
 
