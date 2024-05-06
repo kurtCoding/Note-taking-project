@@ -120,7 +120,7 @@ export default function SideBar() {
               {categories.map((ele, idx) => (
                 <li key={idx} onClick={() => handleCategoryChange(ele.id)}>
                   <Link
-                    to={ele.to}
+                    to={ele.id === "all" ? "notes/" : `notes/${ele.name.toLowerCase()}/${ele.id}`}
                     className={`group flex w-full cursor-pointer items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 ${
                       isActive === idx ? "bg-[#EFABFC] dark:text-black" : ""
                     }`}
@@ -128,6 +128,7 @@ export default function SideBar() {
                   >
                     {ele.name}
                   </Link>
+                  {console.log(ele)}
                 </li>
               ))}
             </ul>
