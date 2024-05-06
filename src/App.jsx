@@ -1,24 +1,28 @@
 import "./App.css";
 import NoteList from "./components/NoteList";
 import SideBar from "./components/SideBar";
-// import AboutUs from "./components/AboutUs";
 import { useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { getNotesList } from "./services/notesApi.js";
 import Home from "./components/Home.jsx";
 import NewNote from "./components/NewNote.jsx";
-// import NoteDetails from "./components/NoteDetails.jsx";
 import EditNote from "./components/EditNote.jsx";
 import AboutUs from "./components/AboutUs.jsx";
 import NoteDetails from "./components/NoteDetails.jsx";
 
+
+
 function App() {
+  const [categories, setCategories] = useState([]);
+  const [allNotes, setAllNotes] = useState([]);
   const [notes, setNotes] = useState([]);
-  console.log(notes);
+  // console.log(notes)
+  // console.log(categories)
+
   function getNotes() {
     getNotesList()
       .then((data) => {
-        setNotes([...data]);
+        setAllNotes([...data]);
       })
       .catch((error) => {
         console.log(error);
@@ -29,14 +33,18 @@ function App() {
     getNotes();
   }, []);
 
+  useEffect(() => {
+    setNotes(allNotes)
+  },[allNotes])
+
   return (
     <>
       <Router>
-        <SideBar notes={notes}/>
+        <SideBar allNotes={allNotes} setNotes={setNotes} setCategories={setCategories} categories={categories}/>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/notes" element={<NoteList notes={notes}/>} />
-          <Route path="/notes/new" element={<NewNote  />} />
+          <Route path="/notes" element={<NoteList notes={notes} categories={categories}/>} />
+          <Route path="/notes/new" element={<NewNote categories={categories}/>} />
           <Route path="/notes/:id" element={<NoteDetails notes={notes} />} />
           <Route path="/note/:id/edit" element={<EditNote />} />
           <Route path="/about" element={<AboutUs />} />
