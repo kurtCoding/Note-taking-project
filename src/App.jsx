@@ -13,9 +13,11 @@ import NoteDetails from "./components/NoteDetails.jsx";
 
 
 function App() {
+  const [categories, setCategories] = useState([]);
   const [allNotes, setAllNotes] = useState([]);
   const [notes, setNotes] = useState([]);
   // console.log(notes)
+  // console.log(categories)
 
   function getNotes() {
     getNotesList()
@@ -38,11 +40,11 @@ function App() {
   return (
     <>
       <Router>
-        <SideBar allNotes={allNotes} setNotes={setNotes}/>
+        <SideBar allNotes={allNotes} setNotes={setNotes} setCategories={setCategories} categories={categories}/>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/notes" element={<NoteList notes={notes} />} />
-          <Route path="/notes/new" element={<NewNote />} />
+          <Route path="/notes" element={<NoteList notes={notes} categories={categories}/>} />
+          <Route path="/notes/new" element={<NewNote categories={categories}/>} />
           <Route path="/notes/:id" element={<NoteDetails notes={notes} />} />
           <Route path="/note/:id/edit" element={<EditNote />} />
           <Route path="/about" element={<AboutUs />} />
