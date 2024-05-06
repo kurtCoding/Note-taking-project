@@ -25,10 +25,10 @@ export default function NoteDetails({notes, error}) {
     navigate(`/notes/${id}/edit`)
   }
 
-//   function handleDelete() {
-//     onDelete(id);
-//     navigate("/notes");
-//   }
+  function handleDelete() {
+    // onDelete(id);
+    navigate("/notes");
+  }
   
   return (
     <div>
@@ -37,8 +37,8 @@ export default function NoteDetails({notes, error}) {
           <p>Title: {note.title}</p>
           <p>Body: {note.body}</p>
           <p>Category: {note.category}</p>
-          <button onClick={handleEdit}>Edit</button>
-          {/* <button onClick={handleDelete}>Delete</button> */}
+          <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py px-1 rounded inline-flex items-center" onClick={handleEdit}>Edit</button>
+          <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py px-1 rounded inline-flex items-center"  onClick={handleDelete}>Delete</button>
 
 
     </div>
