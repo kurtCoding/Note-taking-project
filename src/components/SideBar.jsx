@@ -1,26 +1,47 @@
-import { useState } from "react";
-import { Link} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import {
+  deleteCategory,
+  getCategories,
+  addNewCategory,
+} from "../services/categoriesApi";
 
 export default function SideBar() {
-  const [newTitle, setNewTitle] = useState("");
-  const [noteBookTitles, setNoteBookTitle] = useState([
-    { title: "Work", to: "notes/work", isActive:false},
-    { title: "School", to: "notes/school", isActive:false},
-    { title: "Development", to: "notes/development", isActive:false },
-    { title: "All Notes", to:"/notes", isActive:false },
-  ]);
-
+  const [noteBookName, setNoteBookName] = useState("");
+  const [categories, setCategories] = useState([]);
   const [isActive, setIsActive] = useState(-1);
 
   function handleCategoryBG(idx) {
     setIsActive(idx)
   }
 
-  function handleNewNotebookTitle(e) {
+  function handleSubmitNewNoteBook(e) {
     e.preventDefault();
-    setNoteBookTitle((prev) => [{ title: newTitle }, ...prev]);
-    setNewTitle("");
+    addNewCategory({ name: noteBookName })
+      .then((response) => {
+        setCategories((prev) => [response, ...prev]);
+        setNoteBookName("");
+      })
+      .catch((error) => {
+      //handle error
+      });
   }
+
+  function tryDeleteCategory(id) {
+    deleteCategory(id)
+      .then((response) => {
+        //show deleted successfully msg
+      })
+      .catch((error) => {
+        //handle error msg
+      });
+  }
+
+  useEffect(() => {
+    getCategories().then((data) => {
+      setCategories(data);
+    });
+  }, []);
 
   return (
     <aside
@@ -40,16 +61,16 @@ export default function SideBar() {
         >
           + Add Note
           </button>
-          </Link>
+        </Link>
         <div className="flex justify-between p-2 align-baseline text-white">
           <p>Note Books</p>
         </div>
 
-        <form className="mx-auto max-w-md" onSubmit={handleNewNotebookTitle}>
+        <form className="mx-auto max-w-md" onSubmit={handleSubmitNewNoteBook}>
           <div className="relative">
             <input
-              onChange={(e) => setNewTitle(e.target.value)}
-              value={newTitle || ""}
+              onChange={(e) => setNoteBookName(e.target.value)}
+              value={noteBookName || ""}
               type="search"
               id="default-search"
               maxLength="25"
@@ -67,7 +88,7 @@ export default function SideBar() {
         <ul className="max-h-30 space-y-2 overflow-y-auto font-medium">
           <li>
             <ul id="dropdown-example" className=" space-y-2 py-2">
-              {noteBookTitles.map((ele, idx) => (
+              {categories.map((ele, idx) => (
                 <li key={idx}>
                   <Link
                     to={ele.to}
@@ -76,7 +97,7 @@ export default function SideBar() {
                     }`}
                     onClick={() =>handleCategoryBG(idx)}
                   >
-                    {ele.title}
+                    {ele.name}
                   </Link>
                 </li>
               ))}
@@ -91,6 +112,17 @@ export default function SideBar() {
           About Us
           </button>
           </Link>
+          </li>
+        </ul>
+        <ul id="dropdown-example" className=" space-y-2 py-2">
+          <li className="group flex w-full cursor-pointer items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+            <i className="fa-solid fa-pen-to-square mr-2"></i> Edit label
+          </li>
+          <li
+            onClick={tryDeleteCategory}
+            className="group flex w-full cursor-pointer items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+          >
+            <i className="fa-solid fa-trash-can mr-2"></i> Delete
           </li>
         </ul>
       </div>
