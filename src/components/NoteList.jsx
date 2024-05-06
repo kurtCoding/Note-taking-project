@@ -13,7 +13,8 @@ export default function NoteList({notes, categories}) {
     setPairs(tags.slice(1))
   },[categories])
   
-  console.log(pairs)
+  // console.log(pairs)
+
 
 
   return (

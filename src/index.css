@@ -9,3 +9,13 @@
     @apply bg-primary font-[Sedan] font-medium;
   };
 }
+
+@layer components {
+  .custom-dropdown {
+    @apply appearance-none bg-transparent border-none outline-none cursor-pointer;
+  }
+
+  .custom-dropdown option {
+    @apply cursor-pointer;
+  }
+}
