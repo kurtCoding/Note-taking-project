@@ -7,11 +7,10 @@ import {
   updateCategory,
 } from "../services/categoriesApi";
 
-export default function SideBar({allNotes, setNotes}) {
+export default function SideBar({allNotes, setNote, categories, setCategories}) {
   const [noteBookName, setNoteBookName] = useState("");
   const [isEdit, setIsEdit] = useState(false);
   const [currentNoteBookId, setCurrentNoteBookId] = useState();
-  const [categories, setCategories] = useState([]);
   const [isActive, setIsActive] = useState(-1);
 
   //Gerardo -> useState with all notes as initial

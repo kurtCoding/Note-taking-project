@@ -1,12 +1,7 @@
 import { useState } from "react";
 import { addNewNote } from "../services/notesApi.js";
 
-const categories = [
-  { name: "Work", id: "1" },
-  { name: "School", id: "1" },
-  { name: "Development", id: "1" },
-];
-export default function NewNote() {
+export default function NewNote({categories}) {
   const [newNote, setNewNote] = useState({
     title: "",
     body: "",
@@ -75,8 +70,8 @@ export default function NewNote() {
         </label>
         <select
           required
-          name="categories"
-          id="categories"
+          name="category"
+          id="category"
           className="text-font mb-4 border border-[#878585] bg-transparent"
           onChange={handleTextChange}
           value={newNote.category}
