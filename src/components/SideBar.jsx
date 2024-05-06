@@ -7,12 +7,34 @@ import {
   updateCategory,
 } from "../services/categoriesApi";
 
-export default function SideBar() {
+export default function SideBar({allNotes, setNotes}) {
   const [noteBookName, setNoteBookName] = useState("");
   const [isEdit, setIsEdit] = useState(false);
   const [currentNoteBookId, setCurrentNoteBookId] = useState();
   const [categories, setCategories] = useState([]);
   const [isActive, setIsActive] = useState(-1);
+
+  //Gerardo -> useState with all notes as initial
+  // console.log(allNotes)
+
+
+  //Gerardo -> Search Bar States
+  const [searchTitle, setSearchTitle] = useState("");
+
+  //Gerardo -> Function to handle Search Bar Input Value
+  function handleTextChange(e) {
+    const title = e.target.value;
+    const result = title.length ? filterNotes(title, allNotes) : allNotes;
+    setSearchTitle(title);
+    setNotes(result)
+  }
+
+  //Gerardo -> Function to filter all Notes by Input Value
+  function filterNotes(search, notes){
+    return notes.filter((note) => {
+      return note.title.toLowerCase().match(search.toLowerCase());
+    });
+  }
 
   function handleCategoryBG(idx) {
     setIsActive(idx);
@@ -83,6 +105,17 @@ export default function SideBar() {
           <div className="mb-5 ms-3  text-xl text-fuchsia-300">Eureka ⚡</div>
         </Link>
 
+        <label htmlFor="searchTitle">
+          <input
+            className="mb-4 ml-1 rounded-md bg-gray-600 py-1 text-white"
+            type="text"
+            value={searchTitle}
+            id="searchTitle"
+            placeholder={` Search Note...${"      "}${"      "}${"      "}🔍`}
+            onChange={handleTextChange}
+          />
+        </label>
+
         <Link to="/notes/new">
           <button
             type="button"
@@ -120,7 +153,7 @@ export default function SideBar() {
               {categories.map((ele, idx) => (
                 <li key={idx} onClick={() => handleCategoryChange(ele.id)}>
                   <Link
-                    to={ele.to}
+                    to={ele.id === "all" ? "notes/" : `notes/${ele.name.toLowerCase}/${ele.id}`}
                     className={`group flex w-full cursor-pointer items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 ${
                       isActive === idx ? "bg-[#EFABFC] dark:text-black" : ""
                     }`}
@@ -128,6 +161,7 @@ export default function SideBar() {
                   >
                     {ele.name}
                   </Link>
+                  {/* {console.log(ele)} */}
                 </li>
               ))}
             </ul>
