@@ -40,9 +40,6 @@ export function getNoteById(id) {
      reject(error)
    })
   })
- 
-
-
 }
 
 

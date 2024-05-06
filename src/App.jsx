@@ -46,7 +46,7 @@ function App() {
           <Route path="/notes" element={<NoteList notes={notes} categories={categories}/>} />
           <Route path="/notes/new" element={<NewNote categories={categories}/>} />
           <Route path="/notes/:id" element={<NoteDetails notes={notes} />} />
-          <Route path="/note/:id/edit" element={<EditNote />} />
+          <Route path="/notes/:id/edit" element={<EditNote categories={categories}/>} />
           <Route path="/about" element={<AboutUs />} />
         </Routes>
       </Router>
