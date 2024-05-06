@@ -4,14 +4,14 @@ export default function Note({ note, category, pairs}) {
 
 
 const [color, setColors] = useState("")
-console.log(color)
+// console.log(color)
 
 
   //!Check this, color is being displayed but when passed in tailwind it doesn't style properly
-  useEffect(() => {
-    const tag = pairs.find((pair) => pair.name.toLowerCase() === category.toLowerCase())
-    setColors(tag ? tag.color : "")
-  }, [pairs, category])
+  // useEffect(() => {
+  //   const tag = pairs.find((pair) => pair.name.toLowerCase() === category.toLowerCase())
+  //   setColors(tag ? tag.color : "")
+  // }, [pairs, category])
   
   
   return (
