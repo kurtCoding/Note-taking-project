@@ -9,6 +9,11 @@ import {
 export default function SideBar() {
   const [noteBookName, setNoteBookName] = useState("");
   const [categories, setCategories] = useState([]);
+  const [isActive, setIsActive] = useState(-1);
+
+  function handleCategoryBG(idx) {
+    setIsActive(idx)
+  }
 
   function handleSubmitNewNoteBook(e) {
     e.preventDefault();
