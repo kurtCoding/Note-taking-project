@@ -1,17 +1,18 @@
-import { useState, useEffect } from "react";
-import { useParams} from "react-router-dom";
+import { useState, useEffect } from "react"
 import ErrorMessage from "../Errors/ErrorMessage";
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { getNoteById } from "../api/fetch";
+import { useParams, useNavigate } from "react-router-dom";
+// import { getNoteById } from "../api/fetch";
 
 export default function NoteDetails({notes, error}) {
   const { id } = useParams();
   const [note, setNote] = useState("");
   const [loadingError, setLoadingError] = useState(false)
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
+
   useEffect(() => {
+
     const gotNote = notes.find((n) => n.id === id)
+
     console.log(gotNote)
     if(gotNote) {
       setNote(gotNote)
@@ -19,6 +20,14 @@ export default function NoteDetails({notes, error}) {
       setLoadingError(false)
     }
   }, [])
+
+  function handleEdit() {
+    navigate(`/notes/${id}/edit`)
+  }
+
+  function handleDelete() {
+    
+  }
   
   return (
     <div>
@@ -27,14 +36,12 @@ export default function NoteDetails({notes, error}) {
           <p>Title: {note.title}</p>
           <p>Body: {note.body}</p>
           <p>Category: {note.category}</p>
+          <button onClick={handleEdit}>Edit</button>
+          <button onClick={handleDelete}>Delete</button>
+
 
     </div>
   );
 }
 
-export default function NoteDetails() {
-  <section className="fixed right-0 h-screen w-[85%] overflow-y-auto scroll-smooth bg-primary">
-      <h1 className="text-font text-center">Note Details</h1>
-  </section>
-}
 
