@@ -43,7 +43,7 @@ export default function EditNote ({categories}) {
           className="fixed right-0 flex h-screen w-[85%] flex-col pl-24 pr-24"
           onSubmit={handleSubmit}
         >
-          <h1 className="text-font mt-6 text-center text-4xl">New Note</h1>
+          <h1 className="text-font mt-6 text-center text-4xl">Edit Note</h1>
           <label htmlFor="title" className="text-xl text-white">
             {/* Title */}
           </label>
@@ -94,7 +94,7 @@ export default function EditNote ({categories}) {
           </select>
           <input
             type="submit"
-            value="Add Note"
+            value="Update"
             className="text-font mb-4 w-20 border border-[#878585] bg-transparent text-center"
           />
         </form>
