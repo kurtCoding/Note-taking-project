@@ -1,13 +1,18 @@
 import { useState } from 'react'
 import { addNewNote } from "../services/notesApi.js"
+import { useNavigate } from "react-router-dom"
 
 const categories = [
   {name: "Work", id: "1"}, 
   {name: "School", id: "1"}, 
   {name: "Development", id: "1"}, 
 ]
-export default function NewNote() {
 
+
+export default function NewNote() {
+  
+  let navigate = useNavigate();
+  
   const [newNote, setNewNote] = useState({
     title: "",
     body: "",
@@ -17,7 +22,7 @@ export default function NewNote() {
   function handleSubmit(event) {
     event.preventDefault()
     addNewNote(newNote).then((res) => {
-      
+      navigate() 
     }) 
     setNewNote({
     title: "",
