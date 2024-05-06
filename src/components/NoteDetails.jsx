@@ -25,10 +25,10 @@ export default function NoteDetails({notes, error}) {
     navigate(`/notes/${id}/edit`)
   }
 
-  function handleDelete() {
-    // onDelete(id);
-    navigate("/notes");
-  }
+//   function handleDelete() {
+//     // onDelete(id);
+//     navigate("/notes");
+//   }
   
   return (
     <div>
