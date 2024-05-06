@@ -13,7 +13,7 @@ console.log(color)
     setColors(tag ? tag.color : "")
   }, [pairs, category])
   
-
+  
   return (
     <div className="mb-3 ml-auto mr-auto w-3/4 rounded border-b px-1 py-6 text-start">
       <div className="flex items-center">

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { addNewNote } from "../services/notesApi.js";
+import { useNavigate } from "react-router-dom";
 
 export default function NewNote({categories}) {
+  let navigate = useNavigate();
   const [newNote, setNewNote] = useState({
     title: "",
     body: "",
@@ -16,6 +18,7 @@ export default function NewNote({categories}) {
       body: "",
       category: "",
     });
+    navigate("/notes")
   }
 
   function handleTextChange(event) {
@@ -32,10 +35,10 @@ export default function NewNote({categories}) {
   return (
     <section className="overflow-y-auto scroll-smooth bg-primary">
       <form
-        className="fixed right-0 flex h-screen w-[85%] flex-col pl-24 pr-24"
+        className="fixed right-0 flex h-screen w-[85%] flex-col px-36"
         onSubmit={handleSubmit}
       >
-        <h1 className="text-font mt-6 text-center text-4xl">New Note</h1>
+        <h1 className="text-font mt-6 text-center text-4xl mb-6">New Note</h1>
         <label htmlFor="title" className="text-xl text-white">
           {/* Title */}
         </label>
