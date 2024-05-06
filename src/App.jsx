@@ -31,11 +31,11 @@ function App() {
 
   useEffect(() => {
     getNotes();
-  });
+  },[]);
 
   useEffect(() => {
     setNotes(allNotes)
-  },[allNotes, notes])
+  },[allNotes])
 
   return (
     <>
