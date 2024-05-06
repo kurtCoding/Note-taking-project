@@ -12,6 +12,8 @@ import EditNote from "./components/EditNote.jsx";
 import AboutUs from "./components/AboutUs.jsx";
 import NoteDetails from "./components/NoteDetails.jsx";
 
+
+
 function App() {
   const [notes, setNotes] = useState([]);
   console.log(notes);
@@ -32,11 +34,12 @@ function App() {
   return (
     <>
       <Router>
-        <SideBar notes={notes}/>
+        <SideBar notes={notes} />
+
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/notes" element={<NoteList notes={notes}/>} />
-          <Route path="/notes/new" element={<NewNote  />} />
+          <Route path="/notes" element={<NoteList notes={notes} />} />
+          <Route path="/notes/new" element={<NewNote />} />
           <Route path="/notes/:id" element={<NoteDetails notes={notes} />} />
           <Route path="/note/:id/edit" element={<EditNote />} />
           <Route path="/about" element={<AboutUs />} />

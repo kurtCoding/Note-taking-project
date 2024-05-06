@@ -52,15 +52,16 @@ export function deleteCategory(id) {
   });
 }
 
-export function updateCategory(note) {
-  const docRef = doc(db, "categories", note.id);
+export function updateCategory(noteBook) {
+  const docRef = doc(db, "categories", noteBook.id);
   return new Promise((resolve, reject) => {
     getDoc(docRef)
       .then((docSnapshot) => {
         if (docSnapshot.exists()) {
-          delete note.id;
+          delete noteBook.id;
+          console.log(docSnapshot.data(),'docSnapshot.data()')
           resolve(
-            updateDoc(docRef, note).then(() => ({
+            updateDoc(docRef, noteBook).then(() => ({
               id: docSnapshot.id,
               ...docSnapshot.data(),
             })),
