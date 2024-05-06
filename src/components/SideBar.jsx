@@ -4,10 +4,10 @@ import { Link} from "react-router-dom";
 export default function SideBar() {
   const [newTitle, setNewTitle] = useState("");
   const [noteBookTitles, setNoteBookTitle] = useState([
-    { title: "Work", to: "Notes/work", isActive:false},
-    { title: "School", to: "Notes/school", isActive:false},
-    { title: "Development", to: "Notes/development", isActive:false },
-    { title: "All Notes", to:"/Notes", isActive:false },
+    { title: "Work", to: "notes/work", isActive:false},
+    { title: "School", to: "notes/school", isActive:false},
+    { title: "Development", to: "notes/development", isActive:false },
+    { title: "All Notes", to:"/notes", isActive:false },
   ]);
 
   const [isActive, setIsActive] = useState(-1);
@@ -33,7 +33,7 @@ export default function SideBar() {
           <div className="mb-5 ms-3  text-fuchsia-300 text-xl">Eureka ⚡</div>
         </Link>
 
-        <Link to="/Notes/new">
+        <Link to="/notes/new">
         <button
           type="button"
           className=" mb-5 me-2 w-full rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 "
