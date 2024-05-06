@@ -73,6 +73,7 @@ export default function SideBar({allNotes, setNotes, categories, setCategories})
         })
         .catch((error) => {
           //handle error
+          console.error(error)
         });
     }
   }
@@ -101,16 +102,16 @@ export default function SideBar({allNotes, setNotes, categories, setCategories})
     >
       <div className="bg-nav dark:bg-nav h-full overflow-y-auto px-3 py-4 ">
         <Link to="/">
-          <div className="mb-5 ms-3  text-xl text-fuchsia-300">Eureka ⚡</div>
+          <div className="mb-5 ms-3 text-4xl text-fuchsia-300">🫡 Eureka</div>
         </Link>
 
         <label htmlFor="searchTitle">
           <input
-            className="mb-4 ml-1 rounded-md bg-gray-600 py-1 text-white"
+            className="mb-4 rounded-md bg-gray-600 py-1 text-white text-center w-full"
             type="text"
             value={searchTitle}
             id="searchTitle"
-            placeholder={` Search Note...${"      "}${"      "}${"      "}🔍`}
+            placeholder={` Search Note...${"                        "}🔍`}
             onChange={handleTextChange}
           />
         </label>
@@ -118,7 +119,7 @@ export default function SideBar({allNotes, setNotes, categories, setCategories})
         <Link to="/notes/new">
           <button
             type="button"
-            className=" mb-5 me-2 w-full rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 "
+            className="text-center mb-5 me-2 w-full rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 "
           >
             + Add Note
           </button>
@@ -152,7 +153,7 @@ export default function SideBar({allNotes, setNotes, categories, setCategories})
               {categories.map((ele, idx) => (
                 <li key={idx} onClick={() => handleCategoryChange(ele.id)}>
                   <Link
-                    to={ele.id === "all" ? "notes/" : `notes/${ele.name.toLowerCase}/${ele.id}`}
+                    to={ele.id === "all" ? "notes/" : `${ele.name.toLowerCase()}/`}
                     className={`group flex w-full cursor-pointer items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 ${
                       isActive === idx ? "bg-[#EFABFC] dark:text-black" : ""
                     }`}
