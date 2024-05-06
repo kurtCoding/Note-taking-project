@@ -37,7 +37,7 @@ export default function NewNote({categories}) {
       >
         <h1 className="text-font mt-6 text-center text-4xl">New Note</h1>
         <label htmlFor="title" className="text-xl text-white">
-          Title
+          {/* Title */}
         </label>
         <input
           onChange={handleTextChange}
@@ -47,16 +47,18 @@ export default function NewNote({categories}) {
           value={newNote.title}
           required
           className="text-font mb-4 border border-[#878585] bg-transparent text-2xl"
+          // className="text-font mb-4 bg-transparent text-2xl dark:border-none outline-none focus:border-none"
         />
 
         <label htmlFor="noteArea" className="text-xl text-white">
-          Scribe Here..
+          {/* Scribe Here.. */}
         </label>
         <textarea
           onChange={handleTextChange}
           value={newNote.body}
           id="body"
           className="text-font mb-4 border border-[#878585] bg-transparent text-base"
+          // className="text-font mb-4 bg-transparent text-2xl dark:border-none outline-none focus:border-none"
           rows="20"
           cols="70"
           required

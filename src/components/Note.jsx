@@ -17,8 +17,8 @@ console.log(color)
   return (
     <div className="mb-3 ml-auto mr-auto w-3/4 rounded border-b px-1 py-6 text-start">
       <div className="flex items-center">
-        <h2 className="text-font ml-2 font-bold">
-          <Link to={`/notes/${note.id}`}>
+        <h2 className="ml-2 font-extrabold text-fuchsia-200">
+          <Link to={`/notes/${note.id}`} className="text-lg">
           {note.title}
           </Link>
           </h2>
@@ -31,7 +31,7 @@ console.log(color)
         ></span>
       </div>
       <br />
-      <h3 className="text-font ml-4">{note.body}</h3>
+      <h3 className="text-font ml-2 text-xl">{note.body}</h3>
     </div>
   );
 }
