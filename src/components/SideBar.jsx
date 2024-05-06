@@ -1,21 +1,25 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { deleteCategory, getCategories } from "../services/categoriesApi";
+import {
+  deleteCategory,
+  getCategories,
+  addNewCategory,
+} from "../services/categoriesApi";
 
 export default function SideBar() {
-  const [newTitle, setNewTitle] = useState("");
+  const [noteBookName, setNoteBookName] = useState("");
   const [categories, setCategories] = useState([]);
-  // const [noteBookTitles, setNoteBookTitle] = useState([
-  //   { title: "Work", to: "Notes/work" },
-  //   { title: "School", to: "Notes/school" },
-  //   { title: "Development", to: "Notes/development" },
-  //   { title: "All Notes", to: "/Notes" },
-  // ]);
 
-  function handleNewNotebookTitle(e) {
+  function handleSubmitNewNoteBook(e) {
     e.preventDefault();
-    setNoteBookTitle((prev) => [{ title: newTitle }, ...prev]);
-    setNewTitle("");
+    addNewCategory({ name: noteBookName })
+      .then((response) => {
+        setCategories((prev) => [response, ...prev]);
+        setNoteBookName("");
+      })
+      .catch((error) => {
+      //handle error
+      });
   }
 
   function tryDeleteCategory(id) {
@@ -31,7 +35,6 @@ export default function SideBar() {
   useEffect(() => {
     getCategories().then((data) => {
       setCategories(data);
-      console.log(data, "categories");
     });
   }, []);
 
@@ -56,11 +59,11 @@ export default function SideBar() {
           <p>Note Books</p>
         </div>
 
-        <form className="mx-auto max-w-md" onSubmit={handleNewNotebookTitle}>
+        <form className="mx-auto max-w-md" onSubmit={handleSubmitNewNoteBook}>
           <div className="relative">
             <input
-              onChange={(e) => setNewTitle(e.target.value)}
-              value={newTitle || ""}
+              onChange={(e) => setNoteBookName(e.target.value)}
+              value={noteBookName || ""}
               type="search"
               id="default-search"
               maxLength="25"
@@ -93,13 +96,13 @@ export default function SideBar() {
         </ul>
         <ul id="dropdown-example" className=" space-y-2 py-2">
           <li className="group flex w-full cursor-pointer items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-            <i class="fa-solid fa-pen-to-square mr-2"></i> Edit label
+            <i className="fa-solid fa-pen-to-square mr-2"></i> Edit label
           </li>
           <li
             onClick={tryDeleteCategory}
             className="group flex w-full cursor-pointer items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
           >
-            <i class="fa-solid fa-trash-can mr-2"></i> Delete
+            <i className="fa-solid fa-trash-can mr-2"></i> Delete
           </li>
         </ul>
       </div>

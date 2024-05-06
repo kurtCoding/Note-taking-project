@@ -12,7 +12,6 @@ import {
 const colRef = collection(db, "categories");
 
 export function getCategories() {
-  console.log('working')
   return new Promise((resolve, reject) => {
     getDocs(colRef)
       .then((snapShot) => {
@@ -20,7 +19,7 @@ export function getCategories() {
           id: doc.id,
           ...doc.data(),
         }));
-        console.log(data,'la data')
+
         resolve(data);
       })
       .catch((error) => {
@@ -29,10 +28,12 @@ export function getCategories() {
   });
 }
 
-export function addNewCategory(note) {
+export function addNewCategory(noteBook) {
   return new Promise((resolve, reject) => {
-    addDoc(colRef, note)
-      .then((response) => resolve(response))
+    addDoc(colRef, noteBook)
+      .then((response) => {
+        resolve({ ...noteBook, id: response.id });
+      })
       .catch((error) => reject(error));
   });
 }
