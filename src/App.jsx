@@ -9,6 +9,7 @@ import Home from "./components/Home.jsx";
 import NewNote from "./components/NewNote.jsx";
 // import NoteDetails from "./components/NoteDetails.jsx";
 import EditNote from "./components/EditNote.jsx";
+import AboutUs from "./components/AboutUs.jsx";
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -34,10 +35,11 @@ function App() {
         <SideBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Notes" elemeNt={<NoteList />} />
-          <Route path="/Notes/new" element={<NewNote  />} />
+          <Route path="/notes" elemeNt={<NoteList />} />
+          <Route path="/notes/new" element={<NewNote  />} />
           {/* <Route path="/Notes/:id" element={<NoteDetails/>} /> */}
-          <Route path="/Note/:id/edit" element={<EditNote />} />
+          <Route path="/note/:id/edit" element={<EditNote />} />
+          <Route path="/about" element={<AboutUs />} />
         </Routes>
       </Router>
     </>

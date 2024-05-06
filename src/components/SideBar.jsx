@@ -58,7 +58,7 @@ export default function SideBar() {
               required
             />
 
-            <button className=" bg-whitetext-sm absolute bottom-0 end-0 top-0 w-1/4 rounded-lg border border-gray-300  font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 active:bg-red-400">
+            <button className="bg-whitetext-sm absolute bottom-0 end-0 top-0 w-10 rounded-lg border border-gray-300  font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 active:bg-red-400">
               <i className="fa-solid fa-plus p-2"></i>
             </button>
           </div>
@@ -81,6 +81,16 @@ export default function SideBar() {
                 </li>
               ))}
             </ul>
+          </li>
+          <li>
+          <Link to="/about">
+        <button
+          type="button"
+          className="mb-5 me-2 w-124 rounded-lg px-5 py-2.5 text-base font-medium  hover:bg-gray-100 focus:outline-none focus:ring-gray-100  dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 fixed bottom-0 ml-8"
+        >
+          About Us
+          </button>
+          </Link>
           </li>
         </ul>
       </div>
