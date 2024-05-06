@@ -44,15 +44,17 @@ export default function SideBar() {
       className="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full transition-transform sm:translate-x-0"
       aria-label="Sidebar"
     >
-      <div className="bg-nav dark:bg-nav h-full overflow-y-auto px-3 py-4 ">
-        <div className="mb-5 ms-3  text-xl text-fuchsia-300">Eureka ⚡</div>
+      <div className="h-full overflow-y-auto bg-nav px-3 py-4 dark:bg-nav ">
+        <Link to="/" >
+          <div className="mb-5 ms-3  text-fuchsia-300 text-xl">Eureka ⚡</div>
+        </Link>
 
-        <Link to="/Notes/new">
-          <button
-            type="button"
-            className=" mb-5 me-2 w-full rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 "
-          >
-            + Add Note
+        <Link to="/notes/new">
+        <button
+          type="button"
+          className=" mb-5 me-2 w-full rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 "
+        >
+          + Add Note
           </button>
         </Link>
         <div className="flex justify-between p-2 align-baseline text-white">
@@ -72,7 +74,7 @@ export default function SideBar() {
               required
             />
 
-            <button className=" bg-whitetext-sm absolute bottom-0 end-0 top-0 w-1/4 rounded-lg border border-gray-300  font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700">
+            <button className="bg-whitetext-sm absolute bottom-0 end-0 top-0 w-10 rounded-lg border border-gray-300  font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 active:bg-red-400">
               <i className="fa-solid fa-plus p-2"></i>
             </button>
           </div>
@@ -85,13 +87,26 @@ export default function SideBar() {
                 <li key={idx}>
                   <Link
                     to={ele.to}
-                    className="group flex w-full cursor-pointer items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    className={`group flex w-full items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 cursor-pointer ${
+                      isActive === idx ? "bg-[#EFABFC] dark:text-black" : ""
+                    }`}
+                    onClick={() =>handleCategoryBG(idx)}
                   >
                     {ele.name}
                   </Link>
                 </li>
               ))}
             </ul>
+          </li>
+          <li>
+          <Link to="/about">
+        <button
+          type="button"
+          className="mb-5 me-2 w-124 rounded-lg px-5 py-2.5 text-base font-medium  hover:bg-gray-100 focus:outline-none focus:ring-gray-100  dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 fixed bottom-0 ml-8"
+        >
+          About Us
+          </button>
+          </Link>
           </li>
         </ul>
         <ul id="dropdown-example" className=" space-y-2 py-2">
