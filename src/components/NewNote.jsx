@@ -1,34 +1,40 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { addNewNote } from "../services/notesApi.js"
 import { useNavigate } from "react-router-dom"
+import { getCategories } from '../services/categoriesApi.js'
 
-const categories = [
-  {name: "Work", id: "1"}, 
-  {name: "School", id: "1"}, 
-  {name: "Development", id: "1"}, 
-]
+// const categories = [
+//   {name: "Work", id: "1"}, 
+//   {name: "School", id: "1"}, 
+//   {name: "Development", id: "1"}, 
+// ]
 
 
 export default function NewNote() {
   
   let navigate = useNavigate();
-  
+
+  const [categories, setCategories] = useState([]);
   const [newNote, setNewNote] = useState({
     title: "",
     body: "",
     category: "",
   });
 
+  useEffect(() => {
+    getCategories().then((book) => setCategories(book))
+  }, []);
+
   function handleSubmit(event) {
     event.preventDefault()
     addNewNote(newNote).then((res) => {
-      navigate() 
-    }) 
-    setNewNote({
-      title: "",
-      body: "",
-      category: "",
-    });
+      navigate("/" + newNote.category) 
+    })
+    // setNewNote({
+    //   title: "",
+    //   body: "",
+    //   category: "",
+    // });
   }
 
   function handleTextChange(event) {
