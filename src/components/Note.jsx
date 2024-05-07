@@ -1,17 +1,27 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-export default function Note({ note, category, pairs}) {
+import { useState } from "react";
+export default function Note({ note, category}) {
+  const [pairs, setPairs] = useState([])
 
-
-const [color, setColors] = useState("")
+// const [color, setColors] = useState("")
 // console.log(color)
 
 
   //!Check this, color is being displayed but when passed in tailwind it doesn't style properly
-  useEffect(() => {
-    const tag = pairs.find((pair) => pair.name.toLowerCase() === category.toLowerCase())
-    setColors(tag ? tag.color : "")
-  }, [pairs, category])
+  // useEffect(() => {
+  //   const tag = pairs.find((pair) => pair.name.toLowerCase() === category.toLowerCase())
+  //   setColors(tag ? tag.color : "")
+  // }, [pairs, category])
+
+  // useEffect(() =>{
+  //   const tags = categories.map((category) => ({
+  //     name: category.name,
+  //     color: randomColor(),
+  //   }));
+  //   setPairs(tags.slice(1))
+  // },[categories])
+  
+  // console.log(pairs)
   
   
   return (
@@ -27,7 +37,7 @@ const [color, setColors] = useState("")
         </span>
         <span
         // Add Color Below
-          className={`ml-2 inline-block h-3 w-3 rounded-full bg-[${color}]`}
+          className={`ml-2 inline-block h-3 w-3 rounded-full bg-red-100`}
         ></span>
       </div>
       <br />

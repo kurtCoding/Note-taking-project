@@ -7,78 +7,25 @@ import {
   updateCategory,
 } from "../services/categoriesApi";
 
-import { addNewNote } from "../services/notesApi";
-import randomColor from "randomcolor";
-
-
 export default function SideBar({allNotes, setNotes, categories, setCategories}) {
   const [noteBookName, setNoteBookName] = useState("");
   const [isEdit, setIsEdit] = useState(false);
   const [currentNoteBookId, setCurrentNoteBookId] = useState();
   const [isActive, setIsActive] = useState(-1);
-
-  //Gerardo -> useState with all notes as initial
-  // console.log(allNotes)
-
-
-  //Gerardo -> Search Bar States
+  
   const [searchTitle, setSearchTitle] = useState("");
 
-  //TEST
-  const DBNOTES = [
-    {
-      title: "Software Design Principles",
-      body: "Exploring SOLID principles and their application in software engineering.",
-      category: "development",
-    },
-    {
-      title: "Foreign Language Presentation",
-      body: "Preparing and delivering a presentation in a foreign language class.",
-      category: "school",
-    },
-    {
-      title: "Software Testing Techniques",
-      body: "Understanding various testing methodologies like unit testing, integration testing, and end-to-end testing.",
-      category: "development",
-    },
-    {
-      title: "House Chores Checklist",
-      body: "- Vacuum the living room\n- Water the plants\n- Do laundry",
-      category: "work",
-    },
-    {
-      title: "Data Structures and Algorithms Study",
-      body: "Reviewing fundamental data structures and algorithms for software engineering interviews.",
-      category: "development",
-    },
-    {
-      title: "Meal Prep Plan",
-      body: "- Plan meals for the week\n- Create grocery shopping list\n- Prep ingredients for tomorrow's dinner",
-      category: "work",
-    },
-    {
-      title: "Software Development Life Cycle",
-      body: "Studying the phases of SDLC and their significance in software project management.",
-      category: "development",
-    },
-  ];
-
-  function test() {
-    DBNOTES.forEach((ele) => {
-      addNewNote(ele)
-    })
-  }
-
-  //Gerardo -> Function to handle Search Bar Input Value
   function handleTextChange(e) {
     const title = e.target.value;
     const result = title.length ? filterNotes(title, allNotes) : allNotes;
+    console.log(result)
     setSearchTitle(title);
     setNotes(result)
   }
 
-  //Gerardo -> Function to filter all Notes by Input Value
   function filterNotes(search, notes){
+    console.log(notes)
+    console.log(search)
     return notes.filter((note) => {
       return note.title.toLowerCase().match(search.toLowerCase()) || note.body.toLowerCase().match(search.toLowerCase());
     });
@@ -115,10 +62,7 @@ export default function SideBar({allNotes, setNotes, categories, setCategories})
           console.log(error);
         });
     } else {
-      addNewCategory({ 
-        name: noteBookName,
-        color: randomColor()
-      })
+      addNewCategory({ name: noteBookName })
         .then((response) => {
           setCategories((prev) => [...prev, response]);
           setNoteBookName("");
@@ -154,7 +98,7 @@ export default function SideBar({allNotes, setNotes, categories, setCategories})
     >
       <div className="bg-nav dark:bg-nav h-full overflow-y-auto px-3 py-4 ">
         <Link to="/">
-          <div className="mb-5 ms-3 text-4xl text-fuchsia-300">🫡 Eureka</div>
+          <div className="mb-5 ms-3 text-4xl text-fuchsia-300">⚡ Eureka</div>
         </Link>
 
         <label htmlFor="searchTitle">
@@ -170,7 +114,6 @@ export default function SideBar({allNotes, setNotes, categories, setCategories})
 
         <Link to="/notes/new">
           <button
-            onClick={test}
             type="button"
             className="text-center mb-10 me-2 w-full rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700 "
           >
@@ -206,8 +149,7 @@ export default function SideBar({allNotes, setNotes, categories, setCategories})
               {categories.map((ele, idx) => (
                 <li key={idx} onClick={() => handleCategoryChange(ele.id)}>
                   <Link
-                    // to={ele.id === "all" ? "notes/" : `${ele.name.toLowerCase()}/`}
-                    to={ele.id === "all" ? "notes/" : ``}
+                    to={ele.id === "all" ? "notes/" : `${ele.name.toLowerCase()}/`}
                     className={`group flex w-full cursor-pointer items-center rounded-lg p-2 pl-11 text-gray-900 transition duration-75 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 ${
                       isActive === idx ? "bg-[#EFABFC] dark:text-black" : ""
                     }`}
@@ -215,7 +157,6 @@ export default function SideBar({allNotes, setNotes, categories, setCategories})
                   >
                     {ele.name}
                   </Link>
-                  {/* {console.log(ele)} */}
                 </li>
               ))}
             </ul>

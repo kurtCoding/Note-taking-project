@@ -15,26 +15,21 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [allNotes, setAllNotes] = useState([]);
   const [notes, setNotes] = useState([]);
-  // console.log(notes)
-  // console.log(categories)
 
   function getNotes() {
     getNotesList()
       .then((data) => {
         setAllNotes([...data]);
+        setNotes([...data])
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+    }
 
   useEffect(() => {
     getNotes();
   }, []);
-
-  useEffect(() => {
-    setNotes(allNotes);
-  }, [allNotes, notes]);
 
   return (
     <>
