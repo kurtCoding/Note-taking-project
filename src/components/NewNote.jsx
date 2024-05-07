@@ -12,7 +12,7 @@ export default function NewNote({categories}) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    addNewNote(newNote).then((res) => {});
+    addNewNote(newNote).then((res) => {setNewNote(res)});
     setNewNote({
       title: "",
       body: "",

@@ -47,7 +47,9 @@ export function getNoteById(id) {
 export function addNewNote(note) {
   return new Promise((resolve, reject) => {
     addDoc(colRef, note)
-      .then((response) => resolve(response))
+      .then((response) => {
+        resolve({ id: response.id, ...note });
+      })
       .catch((error) => reject(error));
   });
 }
