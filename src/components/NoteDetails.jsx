@@ -27,7 +27,8 @@ export default function NoteDetails({ notes }) {
 
   function handleDelete(id) {
     deleteNote(id);
-    setNote(null);
+    const updatedNotes = notes.filter((n) => n.id !== id);
+    setNote(updatedNotes);
     navigate("/notes")
   }
 
