@@ -48,6 +48,7 @@ function App() {
           />
           <Route
             path="/notes/new"
+            // Added this now
             element={<NewNote categories={categories} />}
           />
           <Route path="/notes/:id" element={<NoteDetails notes={notes} />} />

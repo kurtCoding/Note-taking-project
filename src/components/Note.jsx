@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+// import { useState } from "react";
 export default function Note({ note, category}) {
-  const [pairs, setPairs] = useState([])
+  // const [pairs, setPairs] = useState([])
 
 // const [color, setColors] = useState("")
 // console.log(color)
