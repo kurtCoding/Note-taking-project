@@ -25,7 +25,7 @@ export default function NoteDetails({ notes }) {
     navigate(`/notes/${id}/edit`);
   }
 
-  function handleDelete(id) {
+  function handleDelete() {
     deleteNote(id);
     const updatedNotes = notes.filter((n) => n.id !== id);
     setNote(updatedNotes);
