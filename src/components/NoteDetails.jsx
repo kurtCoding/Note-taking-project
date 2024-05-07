@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ErrorMessage from "../Errors/ErrorMessage";
-import { deleteNote} from "../services/notesApi";
+import { deleteNote } from "../services/notesApi";
+
 
 export default function NoteDetails({ notes }) {
   const { id } = useParams();
