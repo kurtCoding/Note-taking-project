@@ -1,29 +1,10 @@
 import { Link } from "react-router-dom";
 // import { useState } from "react";
-export default function Note({ note, category}) {
-  // const [pairs, setPairs] = useState([])
+export default function Note({ note, categories, category}) {
 
-// const [color, setColors] = useState("")
-// console.log(color)
+  //DB All Categories
+  // console.log(categories)
 
-
-  //!Check this, color is being displayed but when passed in tailwind it doesn't style properly
-  // useEffect(() => {
-  //   const tag = pairs.find((pair) => pair.name.toLowerCase() === category.toLowerCase())
-  //   setColors(tag ? tag.color : "")
-  // }, [pairs, category])
-
-  // useEffect(() =>{
-  //   const tags = categories.map((category) => ({
-  //     name: category.name,
-  //     color: randomColor(),
-  //   }));
-  //   setPairs(tags.slice(1))
-  // },[categories])
-  
-  // console.log(pairs)
-  
-  
   return (
     <div className="mb-3 ml-auto mr-auto w-3/4 rounded border-b px-1 py-6 text-start">
       <div className="flex items-center">
