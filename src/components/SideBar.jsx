@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import randomColor from "randomcolor";
 import {
   deleteCategory,
   getCategories,
@@ -62,7 +63,10 @@ export default function SideBar({allNotes, setNotes, categories, setCategories})
           console.log(error);
         });
     } else {
-      addNewCategory({ name: noteBookName })
+      addNewCategory({ 
+        name: noteBookName,
+        color: randomColor()
+      })
         .then((response) => {
           setCategories((prev) => [...prev, response]);
           setNoteBookName("");
