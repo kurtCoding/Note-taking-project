@@ -4,7 +4,7 @@ export default function Note({ note, category, pairs}) {
 
 
 const [color, setColors] = useState("")
-console.log(color)
+// console.log(color)
 
 
   //!Check this, color is being displayed but when passed in tailwind it doesn't style properly
@@ -13,7 +13,7 @@ console.log(color)
     setColors(tag ? tag.color : "")
   }, [pairs, category])
   
-
+  
   return (
     <div className="mb-3 ml-auto mr-auto w-3/4 rounded border-b px-1 py-6 text-start">
       <div className="flex items-center">

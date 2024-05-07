@@ -1,18 +1,17 @@
-import "./App.css";
-import NoteList from "./components/NoteList";
-import SideBar from "./components/SideBar";
 import { useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { getNotesList } from "./services/notesApi.js";
+import "./App.css";
+import AboutUs from "./components/AboutUs.jsx";
+import EditNote from "./components/EditNote.jsx";
 import Home from "./components/Home.jsx";
 import NewNote from "./components/NewNote.jsx";
-import EditNote from "./components/EditNote.jsx";
-import AboutUs from "./components/AboutUs.jsx";
 import NoteDetails from "./components/NoteDetails.jsx";
-
-
+import NoteList from "./components/NoteList";
+import SideBar from "./components/SideBar";
+import { getNotesList} from "./services/notesApi.js";
 
 function App() {
+
   const [categories, setCategories] = useState([]);
   const [allNotes, setAllNotes] = useState([]);
   const [notes, setNotes] = useState([]);
@@ -34,19 +33,33 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setNotes(allNotes)
-  },[allNotes])
+    setNotes(allNotes);
+  }, [allNotes, notes]);
 
   return (
     <>
       <Router>
-        <SideBar allNotes={allNotes} setNotes={setNotes} setCategories={setCategories} categories={categories}/>
+        <SideBar
+          allNotes={allNotes}
+          setNotes={setNotes}
+          setCategories={setCategories}
+          categories={categories}
+        />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/notes" element={<NoteList notes={notes} categories={categories}/>} />
-          <Route path="/notes/new" element={<NewNote categories={categories}/>} />
+          <Route
+            path="/notes"
+            element={<NoteList notes={notes} categories={categories} />}
+          />
+          <Route
+            path="/notes/new"
+            element={<NewNote categories={categories} />}
+          />
           <Route path="/notes/:id" element={<NoteDetails notes={notes} />} />
-          <Route path="/note/:id/edit" element={<EditNote />} />
+          <Route
+            path="/notes/:id/edit"
+            element={<EditNote categories={categories} />}
+          />
           <Route path="/about" element={<AboutUs />} />
         </Routes>
       </Router>

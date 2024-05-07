@@ -5,15 +5,16 @@ import { useEffect, useState } from "react";
 export default function NoteList({notes, categories}) {
   const [pairs, setPairs] = useState([])
 
-  useEffect(() =>{
-    const tags = categories.map((category) => ({
-      name: category.name,
-      color: randomColor(),
-    }));
-    setPairs(tags.slice(1))
-  },[categories])
+  // useEffect(() =>{
+  //   const tags = categories.map((category) => ({
+  //     name: category.name,
+  //     color: randomColor(),
+  //   }));
+  //   setPairs(tags.slice(1))
+  // },[categories])
   
-  console.log(pairs)
+  // console.log(pairs)
+
 
 
   return (
